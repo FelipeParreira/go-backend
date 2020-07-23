@@ -2,7 +2,8 @@
 
 1) Criamos uma base com os dados([data.json](data.json)) na seguinte estrutura:
 
-```{
+```json
+{
     "hostname": "server7",
     "cpu_load": {
         "value": 0.5627961727877718,
@@ -29,14 +30,15 @@
 
 
 2) A partir dessa base, criar uma API que receba requisição abaixo:
-```{
-    hostname: "xxxxx"
+```json
+{
+    "hostname": "xxxxx"
 }
 ```
 
 3) E apresente a média, moda e tendência de utilização para os itens abaixo por servidor:
  - CPU
- - Memoria
+ - Memória
  - Disco
 
 4) Você define formato da resposta
