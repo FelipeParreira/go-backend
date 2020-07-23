@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "85a33d50-35dc-4710-91f0-9c04db95be28",
+		"name": "go-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "/health_check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go-backend-url}}/health_check",
+							"host": [
+								"{{go-backend-url}}"
+							],
+							"path": [
+								"health_check"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Servers",
+			"item": [
+				{
+					"name": "/servers/summary",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"hostname\": \"server7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go-backend-url}}/servers/summary",
+							"host": [
+								"{{go-backend-url}}"
+							],
+							"path": [
+								"servers",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

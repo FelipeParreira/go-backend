@@ -8,7 +8,7 @@ import (
 // HealthCheck godoc
 // @Tags health checks
 // @Summary Check API health
-// @Description ping API for 200-OK response
+// @Description Ping API for 200-OK response.
 // @Produce plain
 // @Success 200 {string} string
 // @Router /health_check [get]

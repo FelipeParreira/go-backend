@@ -7,7 +7,7 @@
     "paths": {
         "/health_check": {
             "get": {
-                "description": "ping API for 200-OK response",
+                "description": "Ping API for 200-OK response.",
                 "produces": [
                     "text/plain"
                 ],
@@ -22,6 +22,108 @@
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "/servers/summary": {
+            "get": {
+                "description": "Get summary info concerning a server.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "servers"
+                ],
+                "summary": "Get server info",
+                "parameters": [
+                    {
+                        "description": "server hostname",
+                        "name": "hostname",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servers.HostName"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servers.SummaryInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid JSON body. Body should have a property called `hostname` of type string.",
+                        "schema": {
+                            "$ref": "#/definitions/errors.RestErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No server with hostname: `hostname`.",
+                        "schema": {
+                            "$ref": "#/definitions/errors.RestErr"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "errors.RestErr": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "servers.BaseSummaryInfo": {
+            "type": "object",
+            "properties": {
+                "average": {
+                    "type": "number"
+                },
+                "median": {
+                    "type": "number"
+                },
+                "mode": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "servers.HostName": {
+            "type": "string"
+        },
+        "servers.SummaryInfo": {
+            "type": "object",
+            "properties": {
+                "cpu_load": {
+                    "type": "object",
+                    "$ref": "#/definitions/servers.BaseSummaryInfo"
+                },
+                "disk_usage": {
+                    "type": "object",
+                    "$ref": "#/definitions/servers.BaseSummaryInfo"
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "memory_usage": {
+                    "type": "object",
+                    "$ref": "#/definitions/servers.BaseSummaryInfo"
                 }
             }
         }

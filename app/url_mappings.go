@@ -4,6 +4,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	"go-backend/controllers/ping"
+	"go-backend/controllers/servers"
 	"go-backend/docs"
 	"go-backend/utils/os_utils"
 )
@@ -35,5 +36,5 @@ func mapURLs() {
 	api.GET("/health_check", ping.HealthCheck)
 
 	// public endpoints
-	//api.GET("/servers/summary", servers.HandleGetSummary)
+	api.GET("/servers/summary", servers.HandleGetSummary)
 }

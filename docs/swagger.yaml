@@ -1,10 +1,47 @@
+definitions:
+  errors.RestErr:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+  servers.BaseSummaryInfo:
+    properties:
+      average:
+        type: number
+      median:
+        type: number
+      mode:
+        type: number
+      unit:
+        type: string
+    type: object
+  servers.HostName:
+    type: string
+  servers.SummaryInfo:
+    properties:
+      cpu_load:
+        $ref: '#/definitions/servers.BaseSummaryInfo'
+        type: object
+      disk_usage:
+        $ref: '#/definitions/servers.BaseSummaryInfo'
+        type: object
+      hostname:
+        type: string
+      memory_usage:
+        $ref: '#/definitions/servers.BaseSummaryInfo'
+        type: object
+    type: object
 info:
   contact: {}
   license: {}
 paths:
   /health_check:
     get:
-      description: ping API for 200-OK response
+      description: Ping API for 200-OK response.
       produces:
       - text/plain
       responses:
@@ -15,4 +52,35 @@ paths:
       summary: Check API health
       tags:
       - health checks
+  /servers/summary:
+    get:
+      consumes:
+      - application/json
+      description: Get summary info concerning a server.
+      parameters:
+      - description: server hostname
+        in: body
+        name: hostname
+        required: true
+        schema:
+          $ref: '#/definitions/servers.HostName'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/servers.SummaryInfo'
+        "400":
+          description: Invalid JSON body. Body should have a property called `hostname`
+            of type string.
+          schema:
+            $ref: '#/definitions/errors.RestErr'
+        "404":
+          description: 'No server with hostname: `hostname`.'
+          schema:
+            $ref: '#/definitions/errors.RestErr'
+      summary: Get server info
+      tags:
+      - servers
 swagger: "2.0"
