@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"go-backend/logger"
 	"go-backend/utils/errors"
+	"go-backend/utils/os_utils"
 	"io/ioutil"
 	"os"
 )
@@ -33,7 +34,8 @@ func (s *Server) GetServerInfo() ([]Info, *errors.RestErr) {
 
 func ReadDataFile() ([]Info, *error) {
 	if len(serverInfo) == 0 {
-		dataFile, err := os.Open("./data.json")
+		filePath := os_utils.GetEnvOrDefault("DATA_FILE_PATH", "./data.json")
+		dataFile, err := os.Open(filePath)
 		if err != nil {
 			return nil, &err
 		}

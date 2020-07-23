@@ -1,0 +1,17 @@
+version: 1
+update_configs:
+  - package_manager: "go:modules"
+    directory: "/"
+    update_schedule: "weekly"
+    default_reviewers:
+      - "FelipeParreira"
+    default_labels:
+      - "update-dependencies"
+
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "weekly"
+    default_reviewers:
+      - "FelipeParreira"
+    default_labels:
+      - "update-dependencies"

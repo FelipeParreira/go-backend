@@ -1,10 +1,11 @@
 package app
 
 import (
+	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	"go-backend/controllers/ping"
-	"go-backend/controllers/servers"
+	Servers "go-backend/controllers/servers"
 	"go-backend/docs"
 	"go-backend/utils/os_utils"
 )
@@ -20,7 +21,9 @@ import (
 // @license.url https://github.com/FelipeParreira/go-backend/blob/master/LICENSE
 
 // @schemes http https
-func mapURLs() {
+func setUpRouter() *gin.Engine {
+	router := gin.Default()
+
 	// programmatically set swagger info
 	docs.SwaggerInfo.Version = os_utils.GetEnvOrDefault("API_VERSION", "1.0")
 	docs.SwaggerInfo.BasePath = "/api/v" + docs.SwaggerInfo.Version
@@ -36,5 +39,8 @@ func mapURLs() {
 	api.GET("/health_check", ping.HealthCheck)
 
 	// public endpoints
-	api.GET("/servers/summary", servers.HandleGetSummary)
+	servers := api.Group("/servers")
+	servers.GET("/summary", Servers.HandleGetSummary)
+
+	return router
 }
