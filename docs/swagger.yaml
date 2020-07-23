@@ -1,0 +1,18 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /health_check:
+    get:
+      description: ping API for 200-OK response
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Check API health
+      tags:
+      - health checks
+swagger: "2.0"
