@@ -11,7 +11,7 @@
 ## Description
 
 * This is a RESTful API written in Go (1.14);
-* Data is persisted through [*JSON* file](./data.json);
+* Data is persisted through a [*JSON* file](./data.json);
 * The endpoints are documented using Swagger and can be tested using the [Postman collection and environment attached](./postman);
 
 
@@ -25,6 +25,7 @@ Command | Description |
 `$ make shutdown` | Shutdown app (development mode)
 `$ make test` | Run tests 
 `$ make doc` | Generate swagger doc files **
+`$ make format` | Format code
 `$ make lint` | Run linter
 `$ make audit` | Audit dependencies
 
