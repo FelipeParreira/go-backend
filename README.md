@@ -20,11 +20,13 @@
 Command | Description | 
 --- | --- 
 `$ make run` | Run app (development mode) *
+`$ make run-native` | Run app (locally in your machine) *
+`$ make build` | Build source code
 `$ make shutdown` | Shutdown app (development mode)
 `$ make test` | Run tests 
 `$ make doc` | Generate swagger doc files **
 `$ make lint` | Run linter
-`$ make pipeline/qa` | QA pipeline (linter, audit dependencies & tests)
+`$ make audit` | Audit dependencies
 
 \* runs development image (with environment variables)
 
@@ -50,8 +52,7 @@ Folder/File | Description
   
 ## Next Steps
 
-* Add more unit tests;
-* Add integration/E2E tests;
+* Use document based database (*e.g.* MongoDB) to store data.
 * Add performance tests;
 
 ## Docs

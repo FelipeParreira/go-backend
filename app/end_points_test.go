@@ -13,8 +13,6 @@ import (
 	"testing"
 )
 
-var basePath = docs.SwaggerInfo.BasePath
-
 func TestHealthCheckEndpoint(t *testing.T) {
 	req := createRequest("GET", "/health_check", nil)
 	response := executeRequest(req)
