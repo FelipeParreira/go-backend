@@ -1,0 +1,17 @@
+name: Pipeline
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  go-pipeline:
+    runs-on: ubuntu-latest
+      steps:
+          - name: go1.12 linter
+            uses: shoukoo/golang-pipeline/go1.12/linter@master
+            with:
+              GOLINT: on
+              GOLINTPATH: pkg/controller
+              MISSPELL: off
