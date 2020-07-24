@@ -12,7 +12,7 @@
 
 * This is a RESTful API written in Go (1.14);
 * Data is persisted through a [*JSON* file](./data.json);
-* The endpoints are documented using Swagger and can be tested using the [Postman collection and environment attached](./postman);
+* The endpoints are documented using Swagger and can be tested using the [Postman collection and the environment attached](./postman);
 
 
 ## [Commands](./Makefile)
