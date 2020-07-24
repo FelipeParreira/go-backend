@@ -14,6 +14,10 @@ audit:
 	go mod tidy
 
 lint:
+	golint && \
+	staticcheck ./...
+
+format:
 	gofmt -w .
 
 build:
