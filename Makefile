@@ -26,10 +26,5 @@ build:
 doc:
 	swag init -g app/url_mappings.go
 
-pipeline/qa:
-	make lint && \
-	make audit && \
-	make test
-
 shutdown:
 	$(DOCKER_CMP_COMMAND) down
