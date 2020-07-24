@@ -6,12 +6,17 @@ on:
       - master
 
 jobs:
-  go-pipeline:
+  test:
+    name: Test
     runs-on: ubuntu-latest
-      steps:
-          - name: go1.12 linter
-            uses: shoukoo/golang-pipeline/go1.12/linter@master
-            with:
-              GOLINT: on
-              GOLINTPATH: pkg/controller
-              MISSPELL: off
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.14
+
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Run Unit tests
+        run: make test
