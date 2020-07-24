@@ -19,10 +19,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Lint Go Code
-        run: export PATH=$PATH:$(go env GOPATH)/bin && \
-             go get -u golang.org/x/lint/golint && \
-             go get honnef.co/go/tools/cmd/staticcheck && \
-             make lint
+        run: make lint
 
   build:
     name: Build
